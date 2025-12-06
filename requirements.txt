@@ -1,8 +1,10 @@
 streamlit
 langchain
 langchain-community
-langchain-google-community[drive]
-langchain-openai
+langchain-core
+langchain-google-genai
+langchain-huggingface
+sentence-transformers
 chromadb
-tiktoken
+pypdf
 python-dotenv

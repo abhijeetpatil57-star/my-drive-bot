@@ -31,10 +31,10 @@ from langchain_community.document_loaders import DirectoryLoader, TextLoader, Py
 load_dotenv()
 
 # Force Google Credentials path
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GOOGLE_CREDENTIALS_PATH", "credentials.json")
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GOOGLE_CREDENTIALS_PATH", "credentials.json")
 
 st.set_page_config(page_title="DriveBot (Gemini + Local)", page_icon="📂")
-st.title("📂 Chat with Drive (Gemini Free + Local Embeddings)")
+st.title("📂 Chat (Gemini Free + Local Embeddings)")
 
 # 3. Validation
 if not os.getenv("GOOGLE_API_KEY"):
@@ -64,7 +64,7 @@ def load_local_files():
 @st.cache_resource
 def build_knowledge_base():
     folder_id = os.getenv("GOOGLE_DRIVE_FOLDER_ID")
-    credentials_path = os.getenv("GOOGLE_CREDENTIALS_PATH", "credentials.json")
+    #credentials_path = os.getenv("GOOGLE_CREDENTIALS_PATH", "credentials.json")
     
     # Load files locally
     docs = load_local_files()
