@@ -75,7 +75,7 @@ def build_knowledge_base():
     st.success(f"✅ Loaded {len(docs)} files successfully.")
 
     # Split text
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=100)
     splits = text_splitter.split_documents(docs)
     
     # --- LOCAL EMBEDDINGS (HuggingFace) ---
@@ -103,11 +103,21 @@ if prompt := st.chat_input():
 
     # --- GEMINI CHAT MODEL ---
     llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
-    retriever = vectorstore.as_retriever()
+    #retriever = vectorstore.as_retriever()
+    # New: Ask for 7 chunks instead of 4
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 7})
     
+    # NEW Better Prompt
     system_prompt = (
-        "You are a helpful assistant. Answer based strictly on the context provided."
-        "\n\n"
+        "You are an expert document assistant. Your task is to answer the user's question "
+        "strictly based on the context provided below.\n"
+        "Guidelines:\n"
+        "1. If the answer is not in the context, say 'I cannot find the answer in the documents'.\n"
+        "2. Be concise and direct. Do not waffle.\n"
+        "3. Use bullet points for lists to make it readable.\n"
+        "4. Do not make up information.\n"
+        "\n"
+        "Context:\n"
         "{context}"
     )
     prompt_template = ChatPromptTemplate.from_messages(
