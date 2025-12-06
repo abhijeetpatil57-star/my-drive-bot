@@ -1,0 +1,8 @@
+streamlit
+langchain
+langchain-community
+langchain-google-community[drive]
+langchain-openai
+chromadb
+tiktoken
+python-dotenv
