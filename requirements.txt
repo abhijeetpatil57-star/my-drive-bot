@@ -1,10 +1,11 @@
 streamlit
-langchain
-langchain-community
-langchain-core
+langchain==0.3.7
+langchain-community==0.3.7
+langchain-core==0.3.19
 langchain-google-genai
 langchain-huggingface
 sentence-transformers
 chromadb
 pypdf
 python-dotenv
+pysqlite3-binary
