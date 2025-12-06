@@ -1,4 +1,1 @@
-﻿poppler-utils
-sqlite3
-pysqlite3-binary
-
+poppler-utils
